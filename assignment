@@ -1,0 +1,7 @@
+
+1. what is the main importance of the file "/etc/fstab"
+2. create a new filesystem of 1.5Gb and mount it on /data (make sure that it survives reboot)
+3. once done with creating this, do a df -h on that filesystem and redirect the output to a file called output inside this assignment directory you just cloned i.e. github2_assignment and push it to your repository
+
+
+
