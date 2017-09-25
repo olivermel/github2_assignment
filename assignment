@@ -4,7 +4,24 @@
 #The file /etc/fstab contains information about the various file systems. The fstab is read at boot. The fstab file holds information about how to mount partitions and storage devices. 
 
 2. create a new filesystem of 1.5Gb and mount it on /data (make sure that it survives reboot)
- 
+#answer (personal notes) FILESYSTEM Creation & Configiration 
+#1. create a new partion (using fdisk) 
+# view current partion using fdisk -l 
+# start creation proccess using fdisk /dev/sda
+# First cylinder - press enter to accept default
+# Last cylinder - set size of partion = +size (K,M,G.. K, MB, GB)
+# To infor system about the newly created partion run the $ partprobe /dev/sda4 (or specific partion/device) NB before probing you might have to reboot system first (which I had to do).
+#2. Format that partion with a filesystem (using mkfs -t (specific filesystem) (device to creat file system on)
+# syntax = $ mkfs -t ext4 /dev/sda4 
+#3. Mount filesystem
+# connect file systemt to a specific directory (in order to make it accessible by users)
+# use mkdir to creat a new directory -- $ mkdir /data
+# use mount $ to connect the new filesystem to our new directory /data -- $ (device) (directory)  
+# $ mount /dev/sda4 /data  
+# use df -h to see new filesystem and its size 
+# To make mount persistent across reboots add a line to /etc/fstab config file
+# C1 (decive to be mounted) C2 (mount point) C3 (type of file system) C4 (mount options) C5 (choose wheter or not you want filesystem backed up by the dump command) C6 (what order to check filesystem if needed) 
+# /dev/sda4 /data ext4 defaults 0 (not using dump) 2 (check /data after checking the root system) 
 
 3. once done with creating this, do a df -h on that filesystem and redirect the output to a file called output inside this assignment directory you just cloned i.e. github2_assignment and push it to your repository
 
